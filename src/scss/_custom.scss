@@ -12,3 +12,17 @@
 .dataTables_wrapper {
   margin: 10px 1px 10px 1px;
 }
+
+.btn-write {
+  background-color: #ffff;
+}
+
+.btn-write:hover,
+.btn-write:focus,
+.btn-write:active,
+.btn-write.active,
+.open > .dropdown-toggle.btn-write {
+  color: #23282c;
+  background-color: #f0f3f5;
+  border-color: #e4e7ea; /*set the color you want here*/
+}

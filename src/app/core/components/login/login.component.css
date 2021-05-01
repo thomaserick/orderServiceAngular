@@ -1,6 +1,7 @@
-.binance
-{
-    color:aliceblue;
-    text-decoration: none; 
-    font-size: large;
-} 
+.btn-link {
+  color: #ffff;
+}
+
+.invalid-feedback {
+  color: #ffff;
+}
