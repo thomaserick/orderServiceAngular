@@ -1,0 +1,14 @@
+.card-border {
+  border-radius: 6px;
+  border: 0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  padding: 0.2rem;
+}
+
+.table.dataTable thead th {
+  border-bottom: 0;
+}
+
+.dataTables_wrapper {
+  margin: 10px 1px 10px 1px;
+}

@@ -1,0 +1,157 @@
+<div class="row">
+  <div class="col-sm-12">
+    <form [formGroup]="forms" (ngSubmit)="onSubmit()">
+      <div class="card card-border">
+        <div class="card-body">
+          <div class="row" *ngIf="forms.get('createDate').value != null">
+            <div class="form-group col-6 col-sm-2">
+              <label for="createDate" class="col-form-label"
+                >Data de Registro</label
+              >
+              <input
+                type="text"
+                name="createDate"
+                class="form-control"
+                formControlName="createDate"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-sm-6">
+              <label class="col-form-label" for="name">Nome</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-control"
+                formControlName="name"
+                placeholder="Inserir nome"
+                [class.is-invalid]="validTouched('name')"
+                required
+              />
+              <app-field-error-msg
+                [control]="forms.get('name')"
+                label="Nome"
+              ></app-field-error-msg>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-sm-6">
+              <label class="col-form-label" for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                formControlName="email"
+                placeholder="crypto@contato.com.br"
+                [class.is-invalid]="validTouched('email')"
+                required
+              />
+              <app-field-error-msg
+                [control]="forms.get('email')"
+                label="Email"
+              ></app-field-error-msg>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label class="col-form-label" for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-control"
+                formControlName="password"
+                placeholder="Inserir password"
+                [class.is-invalid]="validTouched('password')"
+                required
+              />
+              <app-field-error-msg
+                [control]="forms.get('password')"
+                label="Password"
+              ></app-field-error-msg>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-sm-3">
+              <label class="col-form-label" for="role">Papel</label>
+              <select
+                id="role"
+                name="role"
+                class="form-control"
+                formControlName="role"
+                [class.is-invalid]="validTouched('role')"
+                required
+              >
+                <option value="" selected disabled>Selecione um Papel</option>
+                <option *ngFor="let role of roles" value="{{ role.value }}">
+                  {{ role.title }}
+                </option>
+              </select>
+              <app-field-error-msg
+                [control]="forms.get('role')"
+                label="Papel"
+              ></app-field-error-msg>
+            </div>
+
+            <div class="form-group col-sm-4">
+              <label class="col-form-label" for="statusInfo"
+                >Informações de Status</label
+              >
+              <select
+                id="statusInfo"
+                name="statusInfo"
+                class="form-control"
+                formControlName="statusInfo"
+                [class.is-invalid]="validTouched('statusInfo')"
+                required
+              >
+                <option value="" selected disabled>Selecione Status</option>
+                <option
+                  *ngFor="let statusInfo of statusInfo"
+                  value="{{ statusInfo.value }}"
+                >
+                  {{ statusInfo.title }}
+                </option>
+              </select>
+              <app-field-error-msg
+                [control]="forms.get('statusInfo')"
+                label="Informações de Status"
+              ></app-field-error-msg>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  formControlName="status"
+                />
+                <label class="form-check-label" for="status"> Ativo </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer" style="border-top: none">
+          <button type="submit" class="btn btn-md btn-primary">Salvar</button>
+          <button
+            type="reset"
+            routerLink=".."
+            (click)="onCancel()"
+            class="btn btn-md btn-secondary"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
