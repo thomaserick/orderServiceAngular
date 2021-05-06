@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CustomersFormComponent } from './customers-form/customers-form.component';
 import { CustomersListComponent } from './customers-list/customers-list.component';
 
 
@@ -24,7 +25,7 @@ const customerRoutes: Routes = [
       },
       {
         path: 'new',
-
+        component: CustomersFormComponent,
         data: {
           title: 'Novo'
         }

@@ -30,8 +30,21 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
 
     this.dtOptions = {
+
       pagingType: 'full_numbers',
-      pageLength: 2
+      pageLength: -1,
+      lengthChange: false,
+      info: false,
+      searching: false,
+      language: {
+        paginate: {
+          next: 'Próximo',
+          first: 'Primeira',
+          last: 'Ultima',
+          previous: 'Anterior'
+        }
+
+      }
     };
 
     this.userService.findAll().subscribe(resp => {
