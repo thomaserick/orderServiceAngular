@@ -36,11 +36,11 @@ export class BasicServices<T> {
     }
 
     update(record: T) {
-        return this.http.put<any>(`${this.API_URL}/${record['id']}`, record, this.httpOptions)
+        return this.http.put<any>(`${this.API_URL}/${record['id'].value}`, record, this.httpOptions)
     }
 
     save(record: T) {
-        if (record['id']) {
+        if (record['id'].value !== null) {
             return this.update(record)
         }
         return this.insert(record)

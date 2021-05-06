@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { TokenStorageService } from '../../services/token-storage.service';
-import { User } from '../../../modules/users/models/user';
+import { User } from '../../../modules/user/models/user';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

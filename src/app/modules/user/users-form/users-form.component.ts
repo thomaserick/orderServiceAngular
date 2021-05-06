@@ -7,7 +7,6 @@ import { map, switchMap } from "rxjs/operators";
 import { FormsUtils } from "../../shared/forms-utils";
 import { FormsValidations } from "../../shared/forms-validations";
 import { Roles } from "../models/enum/roles";
-import { UserStatuInfo } from "../models/enum/userStatusInfo";
 import { User } from "../models/user";
 import { UserService } from "../services/user.service";
 
@@ -20,9 +19,7 @@ export class UsersFormComponent implements OnInit {
   forms: FormGroup;
   user: User;
   roles = FormsUtils.enumSelector(Roles);
-  statusInfo = FormsUtils.enumSelector(UserStatuInfo);
   selectedRole = Roles.GUEST;
-  selectedStatusInfo = UserStatuInfo.PENDING_CONFIRM_EMAIL;
   errors: string[];
 
   constructor(
@@ -66,13 +63,13 @@ export class UsersFormComponent implements OnInit {
         ],
       ],
       role: [this.selectedRole, [Validators.required]],
-      statusInfo: [this.selectedStatusInfo, [Validators.required]],
       status: [true, Validators.required],
     });
 
   }
 
   updateForm(user: User) {
+    console.log(user)
     this.forms
       .patchValue(
         {
@@ -81,9 +78,8 @@ export class UsersFormComponent implements OnInit {
           password: user.password,
           email: user.email,
           role: user.role,
-          statusInfo: user.statusInfo,
           active: user.active,
-          createDate: formatDate(user.createDate, 'dd-MM-yyyy', 'pt-BR')
+          createDate: formatDate(user.created_at, 'dd-MM-yyyy', 'pt-BR')
         }
       )
   }

@@ -98,32 +98,6 @@
                 label="Papel"
               ></app-field-error-msg>
             </div>
-
-            <div class="form-group col-sm-4">
-              <label class="col-form-label" for="statusInfo"
-                >Informações de Status</label
-              >
-              <select
-                id="statusInfo"
-                name="statusInfo"
-                class="form-control"
-                formControlName="statusInfo"
-                [class.is-invalid]="validTouched('statusInfo')"
-                required
-              >
-                <option value="" selected disabled>Selecione Status</option>
-                <option
-                  *ngFor="let statusInfo of statusInfo"
-                  value="{{ statusInfo.value }}"
-                >
-                  {{ statusInfo.title }}
-                </option>
-              </select>
-              <app-field-error-msg
-                [control]="forms.get('statusInfo')"
-                label="Informações de Status"
-              ></app-field-error-msg>
-            </div>
           </div>
 
           <div class="row">

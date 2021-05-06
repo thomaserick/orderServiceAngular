@@ -63,7 +63,12 @@ export const routes: Routes = [
       {
         path: 'users',
         canActivate: [AuthGuard],
-        loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule)
+        loadChildren: () => import('./modules/user/users.module').then(m => m.UsersModule)
+      },
+      {
+        path: 'customer',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./modules/customer/customers.module').then(m => m.CustomersModule)
       },
       {
         path: 'base',

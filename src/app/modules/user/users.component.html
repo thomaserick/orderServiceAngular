@@ -40,7 +40,9 @@
               <td>{{ user.name }}</td>
               <td>{{ user.email }}</td>
               <td>{{ userRoles[user.role] }}</td>
-              <td class="text-center">{{ user.createDate }}</td>
+              <td class="text-center">
+                {{ user.created_at | date: "dd/MM/yyyy hh:mm:ss" }}
+              </td>
               <td>
                 <span
                   class="badge"
@@ -48,11 +50,6 @@
                     user.active == true ? 'badge-success' : 'badge-secondary'
                   "
                   >{{ user.active == true ? "Ativo" : "Inativo" }}</span
-                >
-                <span
-                  class="badge"
-                  [ngClass]="getUserStatusInfoClass(user.statusInfo)"
-                  >{{ userStatusInfo[user.statusInfo] }}</span
                 >
               </td>
 
