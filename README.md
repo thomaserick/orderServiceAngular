@@ -2,7 +2,7 @@
 
 ###
 
-### Dependencias FrontEnd(Angular9)
+### Dependencias FrontEnd(Angular11)
 
 - npm install -g @angular/cli
 
