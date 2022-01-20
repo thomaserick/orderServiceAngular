@@ -1,38 +1,48 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { TokenStorageService } from './token-storage.service';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
+import { TokenStorageService } from "./token-storage.service";
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthService {
-
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    responseType: "json" as const,
+    observe: "response" as const,
+    headers: new HttpHeaders({ "Content-Type": "application/json" }),
   };
 
-  apiURL: String = environment.apiBaseUrl + 'auth/'
+  apiURL: String = environment.apiBaseUrl;
 
-  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
+  constructor(
+    private http: HttpClient,
+    private tokenStorageService: TokenStorageService
+  ) {}
 
-
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(this.apiURL + 'login', {
-      email,
-      password
-    }, this.httpOptions);
+  login(username: string, password: string): Observable<any> {
+    return this.http.post(
+      this.apiURL + "login",
+      {
+        username,
+        password,
+      },
+      this.httpOptions
+    );
   }
 
   register(name: string, email: string, password: string): Observable<any> {
     const register_conde: String = "botcrypto";
-    return this.http.post<any>(this.apiURL + 'register', {
-      name,
-      email,
-      password,
-      register_conde
-
-    }, this.httpOptions);
+    return this.http.post<any>(
+      this.apiURL + "register",
+      {
+        name,
+        email,
+        password,
+        register_conde,
+      },
+      this.httpOptions
+    );
   }
 
   logout() {
@@ -40,15 +50,10 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return this.tokenStorageService.isTokenExpired()
+    return this.tokenStorageService.isTokenExpired();
   }
 
   setToken(data: string) {
-    this.tokenStorageService.setToken(data)
+    this.tokenStorageService.setToken(data);
   }
-
 }
-
-
-
-

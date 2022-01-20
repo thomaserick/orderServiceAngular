@@ -1,26 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { TokenStorageService } from '../../services/token-storage.service';
-import { User } from '../../../modules/user/models/user';
-import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { AuthService } from "../../services/auth.service";
+import { TokenStorageService } from "../../services/token-storage.service";
+import { User } from "../../../modules/user/models/user";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: 'login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: "app-dashboard",
+  templateUrl: "login.component.html",
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-
   user: User;
   errors: string[];
 
-  constructor(private authService: AuthService,
+  constructor(
+    private authService: AuthService,
     private toaster: ToastrService,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-
     this.user = new User();
   }
 
@@ -28,18 +28,18 @@ export class LoginComponent implements OnInit {
     const { email, password } = this.user;
 
     this.authService.login(email, password).subscribe(
-      data => {
-        this.authService.setToken(data);
-        this.router.navigate(['/dashboard']);
+      (response) => {
+        console.log(response);
+        this.authService.setToken(response.headers.get("Authorization"));
+        this.router.navigate(["/dashboard"]);
       },
-      err => {
-        this.errors = [err.error.message];
-        this.errors.forEach(element => {
+      (err) => {
+        this.errors = [err.message];
+        this.errors.forEach((element) => {
           this.toaster.error(`${element}`);
         });
       }
     );
-
   }
 
   reloadPage(): void {
